@@ -7,15 +7,19 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import MoviesList from './MoviesList';
+import MovieDetail from './MovieDetail';
 
 const App = () => (
   <Router>
     <div className="App">
       <header className="App-header">
-        Edmonton Movie Club
+        <Link to="/">
+          Edmonton Movie Club
+        </Link>
       </header>
       <Switch>
-        <Route path="/" component={MoviesList} />
+        <Route exact path="/" component={MoviesList} />
+        <Route path="/:id" component={MovieDetail} />
       </Switch>
     </div>
   </Router>
