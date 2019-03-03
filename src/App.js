@@ -6,8 +6,10 @@ import {
   Link,
 } from 'react-router-dom';
 import './App.css';
-import MoviesList from './MoviesList';
-import MovieDetail from './MovieDetail';
+import MoviesList from './components/MoviesList';
+import MovieDetail from './components/MovieDetail';
+import Navigation from './components/Navigation';
+
 
 const App = () => (
   <Router>
@@ -17,6 +19,7 @@ const App = () => (
           Edmonton Movie Club
         </Link>
       </header>
+      <Navigation />
       <Switch>
         <Route exact path="/" component={MoviesList} />
         <Route path="/:id" component={MovieDetail} />
