@@ -6,9 +6,11 @@ import {
   Link,
 } from 'react-router-dom';
 import './App.css';
+import * as ROUTES from './constants/routes';
 import MoviesList from './components/MoviesList';
 import MovieDetail from './components/MovieDetail';
 import Navigation from './components/Navigation';
+import SignUpPage from './components/SignUp';
 
 
 const App = () => (
@@ -23,6 +25,8 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={MoviesList} />
         <Route path="/:id" component={MovieDetail} />
+        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+        {/* <Route path={ROUTES.SIGN_IN} component={SignInPage} /> */}
       </Switch>
     </div>
   </Router>
