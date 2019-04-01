@@ -11,7 +11,8 @@ import MoviesList from './components/MoviesList';
 import MovieDetail from './components/MovieDetail';
 import Navigation from './components/Navigation';
 import SignUpPage from './components/SignUp';
-
+import SignInPage from './components/SignIn';
+import { withAuthentication } from './components/Session';
 
 const App = () => (
   <Router>
@@ -24,12 +25,12 @@ const App = () => (
       <Navigation />
       <Switch>
         <Route exact path="/" component={MoviesList} />
-        <Route path="/:id" component={MovieDetail} />
         <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-        {/* <Route path={ROUTES.SIGN_IN} component={SignInPage} /> */}
+        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+        <Route path="movie/:id" component={MovieDetail} />
       </Switch>
     </div>
   </Router>
 );
 
-export default App;
+export default withAuthentication(App);
