@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { withFirebase } from './Firebase'
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
+import { withFirebase } from "./Firebase";
 // To write higher order components in a better way
-import { compose } from 'recompose';
+import { compose } from "recompose";
 
-import * as ROUTES from '../constants/routes';
+import * as ROUTES from "../constants/routes";
 
 const SignUpPage = () => (
   <div>
@@ -14,11 +14,11 @@ const SignUpPage = () => (
 );
 
 const INITIAL_STATE = {
-  username: '',
-  email: '',
-  passwordOne: '',
-  passwordTwo: '',
-  error: null,
+  username: "",
+  email: "",
+  passwordOne: "",
+  passwordTwo: "",
+  error: null
 };
 
 class SignUpFormBase extends Component {
@@ -34,7 +34,7 @@ class SignUpFormBase extends Component {
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
+        this.props.history.push(ROUTES.LANDING);
       })
       .catch(error => this.setState({ error }));
 
@@ -48,7 +48,10 @@ class SignUpFormBase extends Component {
   render() {
     const { username, email, passwordOne, passwordTwo, error } = this.state;
     const isInvalid =
-      passwordOne !== passwordTwo || passwordOne === '' || email === '' || username === '';
+      passwordOne !== passwordTwo ||
+      passwordOne === "" ||
+      email === "" ||
+      username === "";
     return (
       <form onSubmit={this.onSubmit}>
         <input
@@ -95,8 +98,10 @@ const SignUpLink = () => (
   </p>
 );
 
-const SignUpForm = compose(withRouter, withFirebase, )(SignUpFormBase);
+const SignUpForm = compose(
+  withRouter,
+  withFirebase
+)(SignUpFormBase);
 
 export default SignUpPage;
 export { SignUpForm, SignUpLink };
-

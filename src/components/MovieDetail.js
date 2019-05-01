@@ -11,7 +11,6 @@ class MovieDetail extends Component {
     movie: []
   };
   async componentDidMount() {
-    console.log("abc");
     try {
       const res = await fetch(
         `https://api.themoviedb.org/3/movie/${
