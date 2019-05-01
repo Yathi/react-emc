@@ -1,24 +1,28 @@
-import React, { Component } from 'react';
-import { Poster } from './Movie';
-import styled from 'styled-components';
-import Overdrive from 'react-overdrive';
+import React, { Component } from "react";
+import { Poster } from "./Movie";
+import styled from "styled-components";
+import Overdrive from "react-overdrive";
 
-const POSTER_PATH = 'http://image.tmdb.org/t/p/w154';
-const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280';
+const POSTER_PATH = "http://image.tmdb.org/t/p/w154";
+const BACKDROP_PATH = "http://image.tmdb.org/t/p/w1280";
 
 class MovieDetail extends Component {
   state = {
     movie: []
-  }
+  };
   async componentDidMount() {
+    console.log("abc");
     try {
-      const res = await fetch(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=6e2437156edf9721bc0a67e47653581f&language=en-US`);
+      const res = await fetch(
+        `https://api.themoviedb.org/3/movie/${
+          this.props.match.params.id
+        }?api_key=6e2437156edf9721bc0a67e47653581f&language=en-US`
+      );
       const movie = await res.json();
       this.setState({
         movie: movie
       });
-
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -26,9 +30,13 @@ class MovieDetail extends Component {
     const { movie } = this.state;
     return (
       <MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
+        <div>movie</div>
         <MovieInfo>
-          <Overdrive id={movie.id}>
-            <Poster src={`${POSTER_PATH}${movie.poster_path}`} alt={`${movie.title}`} />
+          <Overdrive id={`${movie.id}`}>
+            <Poster
+              src={`${POSTER_PATH}${movie.poster_path}`}
+              alt={`${movie.title}`}
+            />
           </Overdrive>
           <div>
             <h1>{movie.title}</h1>

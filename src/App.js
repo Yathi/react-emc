@@ -1,9 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Link,
+ BrowserRouter as Router, Route, Switch, Link 
 } from 'react-router-dom';
 import './App.css';
 import * as ROUTES from './constants/routes';
@@ -18,16 +15,14 @@ const App = () => (
   <Router>
     <div className="App">
       <header className="App-header">
-        <Link to="/">
-          Edmonton Movie Club
-        </Link>
+        <Link to="/">Edmonton Movie Club</Link>
       </header>
       <Navigation />
       <Switch>
         <Route exact path="/" component={MoviesList} />
         <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
         <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-        <Route path="movie/:id" component={MovieDetail} />
+        <Route path="/movie/:id" component={MovieDetail} />
       </Switch>
     </div>
   </Router>
